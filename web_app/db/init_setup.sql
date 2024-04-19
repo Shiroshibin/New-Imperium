@@ -1,0 +1,5 @@
+CREATE DATABASE coffee_meet DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON coffee_meet.* TO 'user'@'%';
+FLUSH PRIVILEGES;

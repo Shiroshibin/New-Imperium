@@ -1,0 +1,4 @@
+flask==2.3.2
+mysqlclient==2.2.4
+sqlalchemy==2.0.28
+python-dotenv==0.21.0
