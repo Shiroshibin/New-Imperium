@@ -36,10 +36,14 @@ def anceta():
 
 
 def statistics():
-    ...
-    # meets = get_all_meets()
-    #
-    # for i in range(len(meets)):
-    #     meets[i][1] = f"№{meets[i][1]}: {get_full_name_by_user_id(meets[i][1])}"
-    #
-    # return render_template("statistics.html", meets=meets)
+    meets = get_all_meets()
+
+    for i in range(len(meets)):
+        meets[i] = (
+            meets[i],
+            get_full_name_by_user_id(meets[i].first_user_id),
+            get_full_name_by_user_id(meets[i].second_user_id),
+            meets[i].meet_date.strftime("%d.%m.%Y")
+        )
+
+    return render_template("view_stats.html", meets=meets)

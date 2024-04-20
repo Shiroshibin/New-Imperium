@@ -22,6 +22,16 @@ def create_user(phone: str, telegram_id: int) -> User | None:
         return None
 
 
+def delete_user(user_id: int) -> bool:
+    """Удаление юзера"""
+    try:
+        User.delete(pk=user_id)
+        return True
+    except Exception as error:
+        print(error)
+        return False
+
+
 def set_active_user(user_id: int) -> bool:
     """Активация аккаунта юзера"""
 
@@ -67,7 +77,6 @@ def create_application(user_id: int, duration: str, appl_format: str) -> Applica
 
 def delete_application(user_id: int) -> bool:
     """Удаление заявки"""
-
     try:
         Application.delete(pk=user_id)
         return True
