@@ -132,3 +132,16 @@ def user_info(user_id: int) -> tuple:
     in_queue = True if Application.query(id=user_id) else False
 
     return user_profile, in_queue
+
+
+def get_full_name_by_user_id(user_id: int) -> str:
+    user_profile = Profile.query(id=user_id)
+
+    full_name = user_profile[1] + " " + user_profile[2]
+
+    return full_name
+
+
+def get_all_meets() -> list:
+    meets = Meet.query()
+    return meets
