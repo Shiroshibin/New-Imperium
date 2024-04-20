@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Tuple, List
 
-from models import User, Profile, Application, Meet
+from .models import User, Profile, Application, Meet
 
 
 def get_user_by_tg_id(tg_id: int) -> User | None:
@@ -153,62 +153,3 @@ def get_all_meets() -> List[Meet]:
 
     meets = Meet.query().all()
     return meets
-
-
-if __name__ == '__main__':
-    ...
-    # create_user(
-    #     phone="98767432109",
-    #     telegram_id=77436892,
-    # )
-    # user = get_user_by_tg_id(tg_id=67436892)
-    # print(user)
-
-    # new_profile = create_profile(
-    #     user_id=user.id,
-    #     last_name="ntbljsel",
-    #     first_name="vnbjnbklsen",
-    #     job_title="nejskbnelknb",
-    #     born_date=datetime.now(),
-    # )
-    #
-    # profile = user_info(user_id=user.id)
-    # print(profile)
-
-    # set_active_user(user_id=user.id)
-
-    # new_appl = create_application(
-    #     user_id=2,
-    #     duration="10",
-    #     appl_format="online"
-    # )
-    # print(new_appl)
-
-    # all_appls = get_all_applications()
-    #
-    # # for appl in all_appls:
-    # #     print(appl)
-    #
-    # new_meet = create_meet(
-    #     first_appl_id=1,
-    #     second_appl_id=2
-    # )
-    # print(new_meet)
-
-    # confirm_meet(
-    #     meet_id=1,
-    #     user_id=2
-    # )
-
-    # user_profile, have_application = user_info(
-    #     user_id=1,
-    # )
-    # print(user_profile, have_application)
-    #
-    # full = get_full_name_by_user_id(
-    #     user_id=1
-    # )
-    # print(full)
-
-    # all_meets = get_all_meets()
-    # print(all_meets)

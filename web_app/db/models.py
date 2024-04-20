@@ -3,7 +3,7 @@ from datetime import datetime
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from database import Base
+from .database import Base
 from settings.constants import ENGINE
 
 

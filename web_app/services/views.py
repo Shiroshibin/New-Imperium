@@ -15,13 +15,17 @@ def anceta():
         last_name = request.form['last_name']
         first_name = request.form['first_name']
         job_title = request.form['job_title']
-        born_date = datetime.strptime(request.form['born_date'], "%d.%m.%Y")
+        try:
+            born_date = datetime.strptime(request.form['born_date'], "%d.%m.%Y")
+        except ValueError as error:
+            print(error)
+            return "ERROR"
 
         print("form_tg_id:", [form_tg_id])
         user = get_user_by_tg_id(tg_id=form_tg_id)
 
         create_profile(
-            user_id=user[0],
+            user_id=user.id,
             last_name=last_name,
             first_name=first_name,
             job_title=job_title,

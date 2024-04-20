@@ -1,4 +1,4 @@
-const telegram_id = 55443322;
+const telegram_id = 77436892;
 
 
 document.querySelector('form').addEventListener('submit', function(event) {
