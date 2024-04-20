@@ -16,10 +16,10 @@ class User(Base):
     is_admin = sa.Column(sa.Boolean, default=False, nullable=False)
     is_active = sa.Column(sa.Boolean, default=False, nullable=False)
 
-    user_profile = relationship("Profile", back_populates="owner_user", cascade="all, delete-orphan", single_parent=True)
-    user_applications = relationship("Application", back_populates="application_user", cascade="all, delete-orphan")
-
-    user_meet = relationship("Meet", back_populates="meet_user", cascade="all, delete-orphan")
+    profile = relationship("Profile", overlaps="user")
+    applications = relationship("Application", overlaps="user")
+    first_meets = relationship("Meet", foreign_keys="[Meet.first_user_id]", overlaps="first_user")
+    second_meets = relationship("Meet", foreign_keys="[Meet.second_user_id]", overlaps="second_user")
 
 
 class Profile(Base):
@@ -31,7 +31,7 @@ class Profile(Base):
     job_title = sa.Column(sa.String(255), nullable=False)
     born_date = sa.Column(sa.Date(), nullable=False)
 
-    owner_user = relationship("User", back_populates="user_profile", cascade="all, delete-orphan", single_parent=True)
+    user = relationship("User", overlaps="profile")
 
 
 class Application(Base):
@@ -41,7 +41,7 @@ class Application(Base):
     duration = sa.Column(sa.String(2), nullable=False)
     format = sa.Column(sa.String(10), nullable=False)
 
-    application_user = relationship("User", back_populates="user_applications", cascade="all, delete-orphan")
+    user = relationship("User", overlaps="applications")
 
 
 class Meet(Base):
@@ -50,15 +50,16 @@ class Meet(Base):
     id = sa.Column(sa.Integer, primary_key=True, index=True, autoincrement=True)
     first_user_id = sa.Column(sa.Integer, sa.ForeignKey("user.id"), nullable=False)
     second_user_id = sa.Column(sa.Integer, sa.ForeignKey("user.id"), nullable=False)
-    first_user_confirm = sa.Column(sa.Boolean, nullable=True)
-    second_user_confirm = sa.Column(sa.Boolean, nullable=True)
+    first_user_confirm = sa.Column(sa.Boolean, nullable=False, default=False)
+    second_user_confirm = sa.Column(sa.Boolean, nullable=False, default=False)
     first_user_rating = sa.Column(sa.String(1), nullable=True)
     second_user_rating = sa.Column(sa.String(1), nullable=True)
     duration = sa.Column(sa.String(2), nullable=False)
     format = sa.Column(sa.String(10), nullable=False)
     meet_date = sa.Column(sa.DateTime, nullable=False, default=datetime.now)
 
-    meet_user = relationship("User", back_populates="user_meet", cascade="all, delete-orphan")
+    first_user = relationship("User", foreign_keys="[Meet.first_user_id]", overlaps="first_meets")
+    second_user = relationship("User", foreign_keys="[Meet.second_user_id]", overlaps="second_meets")
 
 
 if __name__ == "__main__":

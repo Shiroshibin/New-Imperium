@@ -1,3 +1,6 @@
+const telegram_id = 55443322;
+
+
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -9,6 +12,9 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     // если введённыя дата соответствует регулярке
     if (re.test(born_date_input.value)) {
+        // Устанавливаем значение скрытого поля
+        document.getElementById('form_tg_id').value = telegram_id;
+
         // Отправляем форму
         this.submit();
     } else {

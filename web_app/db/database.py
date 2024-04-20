@@ -42,11 +42,13 @@ class Base(DeclarativeBase):
     @classmethod
     def delete(cls, pk: int):
         with DBSession() as db:
-            table_object = db.query(cls).filter_by(id=pk).first()
+            table_object = db.query(cls).get(pk)
             db.delete(table_object)
 
     @classmethod
-    def update(cls, instance_id: int, *args, **kwargs):
+    def update(cls, instance_id: int, **kwargs):
         with DBSession() as db:
-            table_object = db.query(cls).filter_by(id=instance_id).first()
-            table_object.update(*args, **kwargs)
+            table_object = db.query(cls).get(instance_id)
+            if table_object:
+                for key in kwargs:
+                    setattr(table_object, key, kwargs[key])
