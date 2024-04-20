@@ -44,3 +44,9 @@ class Base(DeclarativeBase):
         with DBSession() as db:
             table_object = db.query(cls).filter_by(id=pk).first()
             db.delete(table_object)
+
+    @classmethod
+    def update(cls, instance_id: int, *args, **kwargs):
+        with DBSession() as db:
+            table_object = db.query(cls).filter_by(id=instance_id).first()
+            table_object.update(*args, **kwargs)

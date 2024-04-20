@@ -19,6 +19,6 @@ DB_PORT = os.getenv("DB_PORT")
 DB_HOST = os.getenv("DB_HOST")
 
 # создаем движок SqlAlchemy
-ENGINE = create_engine(f"mysql+mysqldb://{DB_NAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+ENGINE = create_engine(f"mysql+mysqldb://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 
 app = Flask(__name__, template_folder=f'{BASEDIR}/templates', static_folder=f'{BASEDIR}/static')
