@@ -54,7 +54,7 @@ class Meet(Base):
     second_user_confirm = sa.Column(sa.Boolean, nullable=False, default=False)
     first_user_rating = sa.Column(sa.String(1), nullable=True)
     second_user_rating = sa.Column(sa.String(1), nullable=True)
-    duration = sa.Column(sa.String(2), nullable=False)
+    duration = sa.Column(sa.String(10), nullable=False)
     format = sa.Column(sa.String(10), nullable=False)
     meet_date = sa.Column(sa.DateTime, nullable=False, default=datetime.now)
 
