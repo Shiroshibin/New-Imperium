@@ -11,6 +11,17 @@ def get_user_by_tg_id(tg_id: int) -> User | None:
     return user_instance
 
 
+def get_tg_id_by_user_id(user_id: int) -> int | None:
+    """Получение id телеграма по id юзера"""
+
+    try:
+        user_instance = User.query().filter_by(id=user_id).first()
+        return user_instance.telegram_id
+    except Exception as error:
+        print(error)
+        return None
+
+
 def create_user(phone: str, telegram_id: int) -> User | None:
     """Добавление нового юзера"""
 
@@ -20,6 +31,16 @@ def create_user(phone: str, telegram_id: int) -> User | None:
     except Exception as error:
         print(error)
         return None
+
+
+def delete_user(user_id: int) -> bool:
+    """Удаление юзера"""
+    try:
+        User.delete(pk=user_id)
+        return True
+    except Exception as error:
+        print(error)
+        return False
 
 
 def set_active_user(user_id: int) -> bool:
@@ -67,7 +88,6 @@ def create_application(user_id: int, duration: str, appl_format: str) -> Applica
 
 def delete_application(user_id: int) -> bool:
     """Удаление заявки"""
-
     try:
         Application.delete(pk=user_id)
         return True

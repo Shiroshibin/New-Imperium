@@ -1,6 +1,6 @@
-from services import views
+from web_app.services import views
 
-from settings.constants import app
+from web_app.settings.constants import app
 
 
 app.add_url_rule("/anceta", methods=["GET", "POST"], view_func=views.anceta)

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase, Session
 
-from settings.constants import ENGINE
+from web_app.settings.constants import ENGINE
 
 
 class DBSession:

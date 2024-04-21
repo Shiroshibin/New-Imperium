@@ -3,7 +3,7 @@ from datetime import datetime
 
 from flask import render_template, request
 
-from db.funcs import get_all_meets, get_full_name_by_user_id, create_profile, get_user_by_tg_id
+from web_app.db.funcs import get_all_meets, get_full_name_by_user_id, create_profile, get_user_by_tg_id
 
 
 def anceta():

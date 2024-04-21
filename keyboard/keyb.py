@@ -14,8 +14,8 @@ def get_phone_keyboard():
     return keyb
 
 def get_ank_keyboard():
-    keyb = types.InlineKeyboardMarkup()
-    button = types.InlineKeyboardButton(text="Анкета", web_app="https://4161-2a03-d000-1403-f159-2d9a-dbc5-34ad-5ae3.ngrok-free.app")
+    keyb = types.InlineKeyboardMarkup(row_width=1)
+    button = types.InlineKeyboardButton(text="Прошлый вопрос", callback_data="Прошлый вопрос")
     keyb.add(button)
     return keyb
 
@@ -26,9 +26,14 @@ def gen_control_keyboard():
     keyb.add(*buttons)
     return keyb
 
-def gen_req_keyboard():
+def gen_req_keyboard(data):
     keyb = types.InlineKeyboardMarkup(row_width=1)
-    buttons_workpieces = ["Подать заявку", "Назад"]
+
+    if data == "Не весит":
+        buttons_workpieces = ["Подать заявку", "Назад"]
+    else:
+        buttons_workpieces = ["Снять заявку", "Назад"]
+
     buttons = [types.InlineKeyboardButton(text = i, callback_data = i) for i in buttons_workpieces]
     keyb.add(*buttons)
     return keyb
@@ -49,6 +54,13 @@ def gen_format_keyboard():
 def gen_times_keyboard():
     keyb = types.InlineKeyboardMarkup(row_width=1)
     buttons_workpieces = ["15 мин", "20 мин", "30 мин"]
+    buttons = [types.InlineKeyboardButton(text = i, callback_data = i) for i in buttons_workpieces]
+    keyb.add(*buttons)
+    return keyb
+
+def gen_prof_keyboard():
+    keyb = types.InlineKeyboardMarkup(row_width=1)
+    buttons_workpieces = ["Готов(а)", "Отменить"]
     buttons = [types.InlineKeyboardButton(text = i, callback_data = i) for i in buttons_workpieces]
     keyb.add(*buttons)
     return keyb
