@@ -1,5 +1,9 @@
-const telegram_id = 77436892;
+var WebApp = window.Telegram.WebApp;
 
+const telegram_id = WebApp.initDataUnsafe.user.id;
+
+console.log(WebApp);
+console.log(telegram_id);
 
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();

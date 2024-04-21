@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр статистики</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/oggetto-icon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/oggetto-icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/view_stats.css') }}">
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='img/icon_random_coffee.png') }}">
+        <h1>Просмотр статистики</h1>
+    </div>
+    <div class="fixed-container">
+        <div class="table-container">
+            <h4>Встречи</h4>
+            <div class="table-header">
+                <div class="table-cell-fixed">ID Встречи</div>
+                <div class="table-cell-fixed">Первый пользователь</div>
+                <div class="table-cell-fixed">Второй пользователь</div>
+                <div class="table-cell-fixed">Подтверждение от 1-го пользователя</div>
+                <div class="table-cell-fixed">Подтверждение от 2-го пользователя</div>
+                <div class="table-cell-fixed">Рейтинг встречи от 1-го пользователя</div>
+                <div class="table-cell-fixed">Рейтинг встречи от 2-го пользователя</div>
+                <div class="table-cell-fixed">Время проведения встречи</div>
+                <div class="table-cell-fixed">Онлайн или Оффлайн</div>
+                <div class="table-cell-fixed">Дата проведения встречи</div>
+            </div>
+        </div>
+    </div>
+    {% for meet in meets %}
+    <div class="container">
+        <div class="table-container">
+            <div class="table-header">
+                <div class="table-cell">{{ meet[0].id }}</div>
+                <div class="table-cell">{{ meet[1] }}</div>
+                <div class="table-cell">{{ meet[2] }}</div>
+                <div class="table-cell">{{ meet[0].first_user_confirm }}</div>
+                <div class="table-cell">{{ meet[0].second_user_confirm }}</div>
+                <div class="table-cell">{{ meet[0].first_user_rating }}</div>
+                <div class="table-cell">{{ meet[0].second_user_rating }}</div>
+                <div class="table-cell">{{ meet[0].duration }}</div>
+                <div class="table-cell">{{ meet[0].format }}</div>
+                <div class="table-cell">{{ meet[3] }}</div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
